@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Number Validator</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100%;
+        height: 100%;
+        background-color: aquamarine;
+    }
+
+    h1 {
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 30px;
+        color: #fff;
+        font-weight: 500;
+    }
+
+main{
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    form{
+        width: 300px;
+        height: 280px;
+        background-color: #ffffff;
+        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 16px 16px 16px 0px;
+        padding: 16px 8px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content:space-around;
+        font-family: sans-serif;
+        font-weight: 600;
+        font-size: 1.35rem;
+    }
+
+    form input{
+        width: 100%;
+        padding: 8px 5px;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 5px;
+        border: 1px solid grey;
+    }
+
+    form input:focus{
+        border: 2px solid aquamarine;
+        outline:none;
+    }
+
+    form input[type="submit"]{
+        border: none;
+        box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1) ;
+        border-radius: 16px 16px 16px 0px;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        font-size: 1.35rem;
+        cursor: pointer;
+    }
+
+    form input[type="submit"]:hover{
+        background-color: aquamarine;
+        color: #fff;
+    }
+</style>
+
+<body>
+    <h1>Mobile Number Validator</h1>
+    <main>
+        <form onsubmit="return myfunc()" action="">
+            <label for="mobile-num">Mobile Number </label> <input type="text" name="" id="mobile-num" autocomplete="off"><br>
+            <span style="color: red;" id="message"></span><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+
+
+    
+    <script>
+        let myfunc = () => {
+            let userInput = document.getElementById("mobile-num").value
+            let errorMessage = document.getElementById("message");
+            if (userInput.trim() == "") {
+                errorMessage.innerHTML = "** Please enter a mobile number";
+                return false
+            } else if (isNaN(userInput) || !(/^\d+$/.test(userInput))) {
+                let errorMessage = document.getElementById("message");
+                errorMessage.innerHTML = "** Please enter numbers only";
+                return false;
+            }else if(userInput.charAt(0) !== '0'){
+                errorMessage.innerHTML = "**Numbers must be start from 0";
+                return false;
+            }
+             else if (userInput.length !== 11) {
+                errorMessage.innerHTML = "**Number must be 11 digits";
+                return false;
+            }else{
+                errorMessage.innerHTML = "";
+            }
+
+        }
+    </script>
+</body>
+
+</html>
